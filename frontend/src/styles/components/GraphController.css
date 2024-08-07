@@ -1,5 +1,18 @@
 .chartControls { 
+    /* position: absolute;
+    margin-bottom: 0;  */
     display: flex; 
+    width: 96%; 
+    /* margin-right: 30px;  */
+    background-color: white; 
+    gap: 15px; 
+    padding-left: 10px;
+    /* margin-top: 100px;
+    left:0px;
+    margin-left: 30px;
+    top: 0px; */
+
+    /* 
     align-items: center; 
     background-color: white; 
     position: absolute; 
@@ -9,7 +22,8 @@
     left: 30px; 
     margin-bottom: 0; 
     gap: 15px; 
-    padding-left: 10px;}
+    padding-left: 10px; */
+}
 
 .controlButtons { display: flex; align-items: center; justify-content: center; width: 30px; height: auto; background-color: transparent; border: none; cursor: pointer; outline: none; }
 

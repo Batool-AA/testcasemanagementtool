@@ -48,15 +48,17 @@ const TestSuitesCases = () => {
     <div className="test-suites-cases">
       {/* Header Section */}
       <div className="test-suites-header">
-        <h1>Test Suites & Cases</h1>
-        <button className="add-test-suite" onClick={handleAddTestSuite}>+ Add New Test Suite</button>
+        <div className='test-suites-heading'>
+            <h1>Test Suites & Cases</h1>
+            <div className="suite-summary">
+              <span>33 test suites and 115,466 cases in this project.</span>
+          </div>
+        </div>
+        
+        <button className="add-test-suite" onClick={handleAddTestSuite}>+ Add Test Suite</button>
       </div>
 
-      {/* Suite Summary */}
-      <div className="suite-summary">
-        <span>33 test suites and 115,466 cases in this project.</span>
-      </div>
- 
+
       {/* List of Test Suites */}
       <div className="suite-list">
         {testSuites.map((suite) => (
@@ -73,11 +75,11 @@ const TestSuitesCases = () => {
                 <Link to={`/add-test-run?suiteId=${suite.id}&suite=${encodeURIComponent(suite.title)}&source=TestSuitsCases`}>
                   Add Test Run
                 </Link>
-                <span>|</span>
+                <span className='separator'>|</span>
                 <Link to={`/TestSuiteTestRuns?suiteId=${suite.id}&suite=${encodeURIComponent(suite.title)}`}>
                   Test Runs
                 </Link>
-                <span>|</span>
+                <span className='separator'>|</span>
                 <Link to={`/EditTestSuite?suiteId=${suite.id}&suite=${encodeURIComponent(suite.title)}&source=TestSuitsCases`}>
                   Edit
                 </Link>
@@ -88,6 +90,8 @@ const TestSuitesCases = () => {
             </div>
           </div>
         ))}
+
+        
       </div>
     </div>
   );

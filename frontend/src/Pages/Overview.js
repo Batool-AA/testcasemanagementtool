@@ -32,7 +32,28 @@ const Overview = () => {
                             </div>
                           </div> 
                           <div className='activity-details'>
+                            <p className='activity-status-project'>Project</p>
+                            <p className='activity-details-details'>details</p>
+                            <div className='activity-change-by'>
+                              <p>change by</p>
+                            </div>
+                          </div> 
+                          <div className='activity-details'>
+                            <p className='activity-status-section'>Section</p>
+                            <p className='activity-details-details'>details</p>
+                            <div className='activity-change-by'>
+                              <p>change by</p>
+                            </div>
+                          </div> 
+                          <div className='activity-details'>
                             <p className='activity-status-testrun'>Test Run</p>
+                            <p className='activity-details-details'>details</p>
+                            <div className='activity-change-by'>
+                              <p>change by</p>
+                            </div>
+                          </div> 
+                          <div className='activity-details'>
+                            <p className='activity-status-testsuite'>Test Suite</p>
                             <p className='activity-details-details'>details</p>
                             <div className='activity-change-by'>
                               <p>change by</p>
@@ -101,10 +122,16 @@ const Overview = () => {
   return (
     <main className="overview">
       <div className='overview-graph'>
-        <Graphcontrol/>
+        <div className='overview-graph-controls'>
+          <Graphcontrol/>
+        </div>
+        
         
         <div className="overview-chart-container">
-          <Graph/>
+          <div className='overview-graph-container'>
+            <Graph/>
+          </div>
+          
           <div className="overview-legend">
             <div className="overview-legend-item">
               <div className="overview-legend-color" style={{ backgroundColor: 'green' }}></div>

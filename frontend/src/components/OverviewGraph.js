@@ -1,6 +1,7 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';
 import { Chart, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
+import '../styles/components/OverviewGraph.css'
 
 Chart.register(
   CategoryScale,
@@ -61,7 +62,11 @@ const options = {
 };
 
 const Graph = () => {
-  return <Line data={data} options={options} />;
+  return (
+    <div className='graph'>
+      <Line data={data} options={options} />
+    </div>
+  ) 
 };
 
 export default Graph;

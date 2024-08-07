@@ -5,29 +5,45 @@ body, html {
   box-sizing: border-box;
   font-family: Arial, sans-serif;
   
-}
+} 
 
 /* General container for the component */
 .test-suites-cases {
-  padding: 20px;
-  margin-top: 60px; /* Space for the header */
+  /* padding: 20px;
+  margin-top: 60px; 
   background-color: #e6f3ff;
   font-family: Arial, sans-serif;
   box-sizing: border-box;
-  overflow-y: auto; /* Enable vertical scrolling */
-  height: calc(100vh - 60px); /* Full screen height minus header */
-  width: 100%; /* Ensure full width */
+  overflow-y: auto; 
+  height: calc(100vh - 60px); 
+  width: 100%;  */
+
+  font-family: Arial, sans-serif;
+  width: 100%;  
 }
 
 /* Header styling for 'Test Suites & Cases' heading and button */
 .test-suites-header {
-  display: flex;
+  /* display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 15px 0;
   border-bottom: 1px solid #ddd;
-  background-color: #e6f3ff; /* Match background */
-  z-index: 10; /* Ensures header is above other content */
+  background-color: #e6f3ff; 
+  z-index: 10;  */
+
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  top: 100px;
+  left: 30px;
+  margin-bottom: 0;
+  color: black;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 0;
+  border-bottom: 1px solid #ddd;
+  background-color: #e6f3ff;
 } 
 
 .test-suites-header h1 {
@@ -44,6 +60,7 @@ body, html {
   border: none;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  margin-right: 30px;
 }
 
 .add-test-suite:hover {
@@ -59,16 +76,32 @@ body, html {
 
 /* Styling for the test suite list */
 .suite-list {
-  margin-top: 20px;
+  /* margin-top: 20px; */
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 97%;
+    margin-left: 30px;
+    margin-right: 30px;
+    padding: 20px;
+    margin-top: 200px;
+    margin-bottom: 20px;
+    top: 0;
+    left: 0;
+    /* background-color: #f7faff; */
 }
 
 .suite-list .suite {
   border: 1px solid #e0e0e0;
   border-radius: 5px;
   padding: 15px;
-  margin-bottom: 15px;
+  margin-bottom: 5px;
   background-color: white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.separator {
+  margin-top: 8px;
 }
 
 .suite-header {

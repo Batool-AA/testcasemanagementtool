@@ -51,7 +51,7 @@ const Milestones = () => {
   const handleMilestoneClick = (milestoneId, milestoneName) => {
     navigate(`/milestone-status?milestoneId=${milestoneId}&milestoneName=${encodeURIComponent(milestoneName)}`);
   };
-
+ 
   return (
     <div className="Milestones-container">
       <div className='milestone-main-heading'>

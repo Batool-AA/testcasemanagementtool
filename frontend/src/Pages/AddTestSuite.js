@@ -6,7 +6,11 @@ import FileUpload from '../components/fileUpload';
 const AddTestSuite = () => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
-  const [file, setFile] = useState(null);
+  const [files, setFiles] = useState([]);
+
+  const handleFilesChange = (uploadedFiles) => {
+    setFiles(uploadedFiles);
+  };
 
   const navigate = useNavigate();
 
@@ -64,7 +68,7 @@ const AddTestSuite = () => {
           />
         </div>
 
-        <FileUpload/>
+        <FileUpload onFilesChange={handleFilesChange}/>
 
         <div className="test-suite-buttons">
           <button type="submit" className="test-suite-button test-suite-submit">

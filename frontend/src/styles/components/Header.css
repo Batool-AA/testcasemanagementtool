@@ -2,20 +2,25 @@
   
   .header-container {
     font-family: Arial, sans-serif;
-    width: 1680px;
     color: white;
-    
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    margin-bottom: 0; 
+    display: flex;
+    padding: 10px 20px;
   }
   
   .header-header {
-    /* display: flex; */
     align-items: center;
     background-color: #1d3557;
     position: absolute;
     width: 100%;
     top: 0;
     left: 0;
-    margin-bottom: 0;
+    margin-bottom: 0; 
   }
 
   .top {
@@ -28,6 +33,7 @@
     color: white;
     margin-left: 20px;
     font-size: 18px;
+    margin-bottom: 5px;
   }
 
   a {

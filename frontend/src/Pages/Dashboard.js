@@ -47,9 +47,12 @@ const Dashboard = ({userName}) => {
         </div>
         
         
-      </header>
+      </header> 
           
+      <div className='dashboard-graph-controls'>
       <Graphcontrol/>
+      </div>
+      
 
       <div className="chart-container">
         <img src={linechart} alt="Chart" className="chart" />
