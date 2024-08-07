@@ -1,30 +1,50 @@
+import React, { useState } from 'react';
 import Graph from "../components/OverviewGraph";
 import "../styles/MilestonesStatus.css"
-import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const MilestonesStatus = () => {
     const navigate = useNavigate();
     const location = useLocation();
-  const searchParams = new URLSearchParams(location.search);
-  const milestoneId = searchParams.get('milestoneId') || '0'; 
-  const milestoneName = searchParams.get('milestoneName') || 'Milestone'; 
+    const searchParams = new URLSearchParams(location.search);
+    
+    // Fetch milestoneId and milestoneName from URL or set defaults
+    const milestoneId = searchParams.get('milestoneId') || '0'; 
+    const milestoneName = searchParams.get('milestoneName') || 'Milestone'; 
+
+    // Sample Test Runs Data
+    const testRuns = [
+        { id: '101', name: 'Regression Test', date: '2024-08-07', author: 'Alice' },
+        { id: '102', name: 'Smoke Test', date: '2024-08-06', author: 'Bob' },
+    ];
+
+    // Navigate to Edit Milestone
     const handleEditMilestone = () => {
-        navigate(`/add-milestone?milestoneId=${milestoneId}&milestoneName=${milestoneName}`, { state: { from: `/milestone-status?milestoneId=${milestoneId}&milestoneName=${milestoneName}` , action: 'edit'} });
-      };
+        navigate(`/add-milestone?milestoneId=${milestoneId}&milestoneName=${milestoneName}`, {
+            state: {
+                from: `/milestone-status?milestoneId=${milestoneId}&milestoneName=${milestoneName}`,
+                action: 'edit'
+            }
+        });
+    };
+
+    // Navigate to TestRunTestsResults
+    const handleTestRunClick = (testRunId, testRunName) => {
+        navigate(`/TestRunTestsResults?milestoneId=${milestoneId}&milestoneName=${milestoneName}&testRunId=${testRunId}&testRunName=${testRunName}`);
+    };
 
     return (
         <div className="status-mainclass">
             <div className="status-header">
                 <div className="status-options">
-                <a className="upperbar" href={`/milestone-status?milestoneId=${milestoneId}&milestoneName=${milestoneName}` }>Status</a>
-                <a href={`/milestone-activity?milestoneId=${milestoneId}&milestoneName=${milestoneName}&source=milestone-status`}>Activity</a>
-                <a href={`/milestone-progress?milestoneId=${milestoneId}&milestoneName=${milestoneName}&source=milestone-status`}>Progress</a>
-                <a href={`/milestone-defect?milestoneId=${milestoneId}&milestoneName=${milestoneName}&source=milestone-status`}>Defects</a>
+                    <a className="upperbar" href={`/milestone-status?milestoneId=${milestoneId}&milestoneName=${milestoneName}` }>Status</a>
+                    <a href={`/milestone-activity?milestoneId=${milestoneId}&milestoneName=${milestoneName}&source=milestone-status`}>Activity</a>
+                    <a href={`/milestone-progress?milestoneId=${milestoneId}&milestoneName=${milestoneName}&source=milestone-status`}>Progress</a>
+                    <a href={`/milestone-defect?milestoneId=${milestoneId}&milestoneName=${milestoneName}&source=milestone-status`}>Defects</a>
                 </div>
                
                 <div className="status-controls">
-                <h2>{`M${milestoneId} - ${milestoneName}`}</h2>
+                    <h2>{`M${milestoneId} - ${milestoneName}`}</h2>
                     <div className="status-control-button">
                         <button className="milestone-button" >Export</button>
                         <button className="milestone-button" >Print</button>
@@ -58,7 +78,7 @@ const MilestonesStatus = () => {
             <div className="status-milestones-details-class">
                 <div className="status-milestones-details"> 
                     <input type="checkbox"/>
-                    <p><strong>Milestone Name</strong><br></br>Due Date / Starts On</p>
+                    <p><strong>Milestone Name</strong><br/>Due Date / Starts On</p>
                     <div className="status-milestones-statusbar">
                         <div className="status-milestones-progress-bar-passed" style={{ width: '42%' }}> </div>
                         <div className="status-milestones-progress-bar-untested" style={{ width: '16%' }}> </div>
@@ -75,43 +95,32 @@ const MilestonesStatus = () => {
                 </div>
             </div>
 
-            <div className="status-testrun-details-class">
-                <div className="status-testrun-details">
-                    <input type="checkbox"/>
-                    <p><strong><a
-                                href={`/TestRunTestsResults`}
-                            >
-                                Test Run Name
-                            </a></strong>by ... on ...<br></br></p>
-                    <div className="status-testrun-statusbar">
-                        <div className="status-testrun-progress-bar-passed" style={{ width: '42%' }}> </div>
-                        <div className="status-testrun-progress-bar-untested" style={{ width: '16%' }}> </div>
-                        <div className="status-testrun-progress-bar-failed" style={{ width: '42%' }}> </div>
+            {testRuns.map((testRun, index) => (
+                <div className="status-testrun-details-class" key={testRun.id}>
+                    <div className="status-testrun-details">
+                        <input type="checkbox" />
+                        <p>
+                            <strong>
+                                <a
+                                    // href="#"
+                                    onClick={() => handleTestRunClick(testRun.id, testRun.name)}
+                                >
+                                    {testRun.name}
+                                </a>
+                            </strong>
+                            by {testRun.author} on {testRun.date}<br />
+                        </p>
+                        <div className="status-testrun-statusbar">
+                            <div className="status-testrun-progress-bar-passed" style={{ width: '42%' }}> </div>
+                            <div className="status-testrun-progress-bar-untested" style={{ width: '16%' }}> </div>
+                            <div className="status-testrun-progress-bar-failed" style={{ width: '42%' }}> </div>
+                        </div>
+                        <div className="status-testrun-progress-value">42%</div>
                     </div>
-                    <div className="status-testrun-progress-value">42%</div>
                 </div>
-            </div>
-
-            <div className="status-testrun-details-class">
-                <div className="status-testrun-details">
-                    <input type="checkbox"/>
-                    <p><strong><a
-                                href={`/TestRunTestsResults`}
-                            >
-                                Test Run Name
-                            </a></strong>by ... on ...<br></br></p>
-                    <div className="status-testrun-statusbar">
-                        <div className="status-testrun-progress-bar-passed" style={{ width: '42%' }}> </div>
-                        <div className="status-testrun-progress-bar-untested" style={{ width: '16%' }}> </div>
-                        <div className="status-testrun-progress-bar-failed" style={{ width: '42%' }}> </div>
-                    </div>
-                    <div className="status-testrun-progress-value">42%</div>
-                </div>
-            </div>
-            
+            ))}
         </div>
     );
 }
 
 export default MilestonesStatus;
-

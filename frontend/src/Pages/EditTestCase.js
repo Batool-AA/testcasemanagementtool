@@ -117,6 +117,22 @@ const EditTestCase = () => {
       } 
   };
 
+  const handleDelete = (e) => {
+    e.preventDefault();
+    // Handle delete logic here (e.g., API call to delete the test case)
+    // console.log('Deleting test case:', testCaseId);
+
+    if (sourcePage === 'TestCaseDetails') {
+      navigate(`/TestCaseDetails?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}&testCaseId=${testCaseId}&testCaseName=${testCaseName}`); 
+    } else if (sourcePage === 'TestsResults') {
+        navigate(`/TestsResults?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}&testCaseId=${testCaseId}&testCaseName=${testCaseName}`); 
+    } else if (sourcePage === 'TestCaseDefects') {
+        navigate(`/TestCaseDefects?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}&testCaseId=${testCaseId}&testCaseName=${testCaseName}`); 
+    } else {
+        navigate(`/TestCaseHistory?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}&testCaseId=${testCaseId}&testCaseName=${testCaseName}`); 
+    }
+  };
+
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
   };
@@ -278,7 +294,7 @@ const EditTestCase = () => {
           </div>
 
 
-          {template == "Test Case (Text)" &&
+          {template === "Test Case (Text)" &&
             <div className='test-case-template-based'>
               <div className="test-case-form-group">
                 <label htmlFor="preconditions" className="test-case-label">
@@ -321,7 +337,7 @@ const EditTestCase = () => {
             </div>
           }
 
-          {template == "Test Case (Steps)" &&
+          {template === "Test Case (Steps)" &&
             <div className='test-case-template-based'>
               <div className="test-case-form-group">
                 <label htmlFor="preconditions" className="test-case-label">
@@ -353,7 +369,7 @@ const EditTestCase = () => {
             </div>
           }
 
-          {template == "Exploratory Session" &&
+          {template === "Exploratory Session" &&
             <div className='test-case-template-based'>
               <div className="test-case-form-group">
                 <label htmlFor="mission" className="test-case-label">
@@ -383,7 +399,7 @@ const EditTestCase = () => {
             </div>
           }
 
-          {template == "Behavior Driven Development" &&
+          {template === "Behavior Driven Development" &&
             <div className='test-case-template-based'>
               <div className="test-case-form-group">
                 <label htmlFor="bdd" className="test-case-label">
@@ -435,14 +451,18 @@ const EditTestCase = () => {
           </div>
         </form>
 
-        
-
         <div className="actions-section">
           {/* <p className="actions-title">Actions</p> */}
           <p className="actions-description">
           Delete a test case to remove it from its test suite. <br></br>This also deletes all related running tests.
           </p>
-          <button className="delete-suite-button">✗ Delete this test case</button>
+          <button
+              type="button"
+              onClick={handleDelete}
+              className="delete-suite-button"
+            >
+              ✗ Delete this test case
+            </button>
         </div>
       </div>
     </div>

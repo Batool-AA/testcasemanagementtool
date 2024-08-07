@@ -52,6 +52,18 @@ const EditTestSuite = () => {
       }
   };
 
+  const handleDelete = (e) => {
+    e.preventDefault();
+
+    if (sourcePage === 'TestSuiteTestRuns') {
+      navigate(`/TestSuiteTestRuns?suiteId=${suiteId}&suite=${encodeURIComponent(name)}`); // Use updated name
+    } else if (sourcePage === 'SectionsCases') {
+      navigate(`/SectionsCases?suiteId=${suiteId}&suite=${encodeURIComponent(name)}`); // Use updated name
+    } else {
+      navigate('/TestSuitsCases');
+    }
+  };
+
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
   };
@@ -113,13 +125,18 @@ const EditTestSuite = () => {
           </div>
         </form>
 
-    
         <div className="actions-section">
           {/* <p className="actions-title">Actions</p> */}
           <p className="actions-description">
             Delete this test suite to remove it from your project. <br></br>This also deletes all related test cases and running tests.
           </p>
-          <button className="delete-suite-button">✗ Delete this test suite</button>
+          <button
+              type="button"
+              onClick={handleDelete}
+              className="delete-suite-button"
+            >
+              ✗ Delete this test suite
+            </button>
         </div>
       </div>
     </div>

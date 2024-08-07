@@ -78,7 +78,7 @@ const TestCaseHistory = () => {
                         <div className="test-case-header">
                             <div className="test-case-id">{testCaseId}</div>
                             <h1 className="test-case-name">{testCaseName}</h1>
-                            <Link to={`/EditTestCase?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}&testCaseId=${testCaseId}&testCaseName=${testCaseName}&source=TestsResults`} className="edit-case-link">Edit</Link>
+                            <Link to={`/EditTestCase?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}&testCaseId=${testCaseId}&testCaseName=${testCaseName}&source=TestCaseHistory`} className="edit-case-link">Edit</Link>
                         </div>
                             <Link
                             to={`/SectionsCases?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}`}
