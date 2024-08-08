@@ -159,6 +159,12 @@ const TestRunTestsResults = () => {
       <div className="test-run-tests-results-header">
         <h2>{`R${testRunId} - ${testRunName}`}</h2>
         <div className="test-run-tests-results-actions">
+        <Link
+            to={`/EditTestRun?testRunId=${testRunId}&testRunName=${testRunName}`}
+            className="add-case-button"
+          >
+            Edit
+          </Link>
           <Link
             to={`/SectionsCases?suiteId=${suiteId}&suite=${suiteName}`}
             className="add-case-button"
