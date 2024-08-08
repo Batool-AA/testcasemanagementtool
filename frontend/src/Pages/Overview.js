@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Graph from '../components/OverviewGraph';
+import LineChart from '../components/LineGraph.js';
 import '../styles/Overview.css';
 import Graphcontrol from '../components/Graphcontrol';
 import Milestones from '../components/Milestones';
@@ -113,11 +113,21 @@ const Overview = () => {
                         </div>
                     </div>
                 );
-            // Add more cases if you have additional views
             default:
                 return <div>Select a view</div>;
         }
     };
+
+    const data = {
+      labels: ['2/24', '2/25', '2/26', '2/27', '2/28', '3/1'],
+      passed: [200, 0, 0, 0, 300, 500],
+      blocked: [0, 0, 0, 0, 3, 4],
+      retest: [0, 0, 0, 0, 1, 1],
+      failed: [0, 0, 0, 0, 2, 20],
+      comments: [0, 0, 0, 0, 1, 2],
+      partial: [0, 0, 0, 0, 4, 30],
+    };
+
 
   return (
     <main className="overview">
@@ -128,36 +138,7 @@ const Overview = () => {
         
         
         <div className="overview-chart-container">
-          <div className='overview-graph-container'>
-            <Graph/>
-          </div>
-          
-          <div className="overview-legend">
-            <div className="overview-legend-item">
-              <div className="overview-legend-color" style={{ backgroundColor: 'green' }}></div>
-              <span className="overview-legend-text">1146 Passed</span>
-            </div>
-            <div className="overview-legend-item">
-              <div className="overview-legend-color" style={{ backgroundColor: 'red' }}></div>
-              <span className="overview-legend-text">7 Blocked</span>
-            </div>
-            <div className="overview-legend-item">
-              <div className="overview-legend-color" style={{ backgroundColor: 'blue' }}></div>
-              <span className="overview-legend-text">2 Retest</span>
-            </div>
-            <div className="overview-legend-item">
-              <div className="overview-legend-color" style={{ backgroundColor: 'orange' }}></div>
-              <span className="overview-legend-text">22 Failed</span>
-            </div>
-            <div className="overview-legend-item">
-              <div className="overview-legend-color" style={{ backgroundColor: 'grey' }}></div>
-              <span className="overview-legend-text">3 Comments</span>
-            </div>
-            <div className="overview-legend-item">
-              <div className="overview-legend-color" style={{ backgroundColor: 'yellow' }}></div>
-              <span className="overview-legend-text">34 Partial</span>
-            </div>
-          </div>
+            <LineChart data={data}/>
         </div>
       </div>
 
@@ -167,7 +148,7 @@ const Overview = () => {
         <TestRuns/>
       </div>
   
-      <div className='overview-activitylog'>
+      <div className='overview-activitylog'> 
         <div className='overview-activitylog-header'>
           <h2>Activity</h2>
           <div className='overview-activitylog-change'>

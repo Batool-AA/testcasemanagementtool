@@ -14,7 +14,7 @@ const Milestones = () => {
     { id: 3, name: 'Release 1.120', checked: false },
     { id: 4, name: 'Genstack', checked: false },
   ]);
-
+ 
   const handleFormat = () => {
     setShowButtons(!showButtons);
   };
@@ -59,8 +59,8 @@ const Milestones = () => {
         <div className='button-class'>
           <button className="milestone-add-button" onClick={handleAdd}> + Add Milestone</button>
           <button className="milestone-delete-button" onClick={handleDelete}> - Delete Milestone</button>
-        </div>
-      </div>
+        </div> 
+      </div> 
 
       <div className='milestone-listing'>
         <div className='milestones-open'>

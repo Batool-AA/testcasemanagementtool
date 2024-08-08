@@ -82,7 +82,7 @@ const SignUp = () => {
             <label className="form-label">Email<span className="required">*</span></label>
             <input type="email" name="workEmail" value={formData.workEmail} onChange={handleChange} required />
           </div>
-
+ 
           <div className="form-group">
             <label className="form-label">Password<span className="required">*</span></label>
             <input type="password" name="password" value={formData.password} onChange={handleChange} required />

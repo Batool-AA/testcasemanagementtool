@@ -16,12 +16,12 @@ const AddMilestone = () => {
   const handleFilesChange = (uploadedFiles) => {
     setFiles(uploadedFiles);
   };
-
+ 
   const navigate = useNavigate();
 
   const location = useLocation();
   const from = location.state?.from;
-  const action = location.state?.action;
+  const action = location.state?.action; 
 
   const handleCancel = () => {
     navigate(from);

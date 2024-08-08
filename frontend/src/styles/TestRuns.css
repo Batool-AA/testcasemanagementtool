@@ -260,3 +260,14 @@
   margin-left: auto;
   /* margin-right: 20px; */
 }
+
+.testrun-testresults-rundetails {
+  font-size: 12px;
+  color: rgb(87, 86, 86);
+}
+
+.test-run-test-case-details-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}

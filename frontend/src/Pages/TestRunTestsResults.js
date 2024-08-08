@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, Link, useNavigate } from "react-router-dom";
 import "../styles/TestRunTestsResults.css";
+import PieChart from "../components/pieChart";
 
 const TestRunTestsResults = () => {
   const location = useLocation();
@@ -10,137 +11,16 @@ const TestRunTestsResults = () => {
   const suiteId = searchParams.get("suiteId") || "0"; // Default to '0' if no suiteId is provided
   const suiteName = searchParams.get("suite") || "Test Suite"; // Default to 'Test Suite' if no suiteName is provided
   const navigate = useNavigate();
-
-  // State to hold test case data
   const [testCases, setTestCases] = useState([]);
-  const [loading, setLoading] = useState(true); // Loading state to handle async data
-
-  // Example data for pie chart
-  const [testCaseData, setTestCaseData] = useState({
-    passed: 0,
-    blocked: 0,
-    retest: 0,
-    failed: 0,
-    untested: 0,
-  });
-
-  useEffect(() => {
-    // Function to fetch test case data based on testRunId
-    const fetchTestCaseData = async () => {
-      // Simulate fetching data with a timeout
-      setTimeout(() => {
-        const fetchedData = [
-          {
-            id: "T8187",
-            title: "Opening and navigating on chrome",
-            status: "Passed",
-            defects: [],
-            assignedTo: "",
-          },
-          {
-            id: "T8187",
-            title: "Opening and navigating on Firefox",
-            status: "Passed",
-            defects: [],
-            assignedTo: "",
-          },
-          {
-            id: "T8187",
-            title: "Opening and navigating on Edge",
-            status: "Passed",
-            defects: [],
-            assignedTo: "",
-          },
-          {
-            id: "T8187",
-            title: "Opening and navigating on safari",
-            status: "Passed",
-            defects: [],
-            assignedTo: "",
-          },
-          {
-            id: "T8187",
-            title: "Opening and navigating on tablet (android/ipad)",
-            status: "Blocked",
-            defects: [],
-            assignedTo: "",
-          },
-          {
-            id: "T8187",
-            title: "Portal is responsive",
-            status: "Failed",
-            defects: ["PRIV-42493"],
-            assignedTo: "",
-          },
-          {
-            id: "T8187",
-            title:
-              "All fonts are the same in the whole portal",
-            status: "Passed",
-            defects: [],
-            assignedTo: "",
-          },
-          {
-            id: "T8187",
-            title:
-              "UI is not disturbing on resizing of screen (extra big and extra small screens)",
-            status: "Failed",
-            defects: ["PRIV-42474"],
-            assignedTo: "",
-          },
-          {
-            id: "T818761",
-            title: "Errors are displaying on success and failures",
-            status: "Passed",
-            defects: [],
-            assignedTo: "",
-          },
-          {
-            id: "T8187",
-            title:
-              "UI is not disturbing on resizing of screen (extra big and extra small screens)",
-            status: "Failed",
-            defects: ["PRIV-42474"],
-            assignedTo: "",
-          },
-          {
-            id: "T818761",
-            title: "Errors are displaying on success and failures",
-            status: "Passed",
-            defects: [],
-            assignedTo: "",
-          },
-        ];
-
-        // Calculate test case statistics
-        const updatedTestCaseData = fetchedData.reduce(
-          (acc, testCase) => {
-            acc[testCase.status.toLowerCase()] += 1;
-            return acc;
-          },
-          { passed: 0, blocked: 0, retest: 0, failed: 0, untested: 0 }
-        );
-
-        setTestCases(fetchedData);
-        setTestCaseData(updatedTestCaseData);
-        setLoading(false);
-      }, 1000);
-    };
-
-    // Fetch test case data when the testRunId changes
-    fetchTestCaseData();
-  }, [testRunId]);
-
-  // Calculate percentages for pie chart
-  const totalCases = Object.values(testCaseData).reduce(
-    (sum, val) => sum + val,
-    0
-  );
-  const pieChartData = Object.entries(testCaseData).map(([key, value]) => ({
-    name: key,
-    value,
-    percentage: ((value / totalCases) * 100).toFixed(0),
-  }));
+  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState([
+    { label: 'Passed', value: 12 },
+    { label: 'Blocked', value: 19 },
+    { label: 'Retest', value: 3 },
+    { label: 'Failed', value: 5 },
+    { label: 'Comments', value: 2 },
+    { label: 'Partial', value: 3 },
+]);
 
   const handleTestCaseClick = (testCase) => {
     navigate(
@@ -165,74 +45,16 @@ const TestRunTestsResults = () => {
           >
             Suite
           </Link>
-          <button className="edit-test-run-link">Export</button>
+          <button className="edit-test-run-link">Edit</button>
         </div>
       </div>
 
       <div className="test-run-tests-results-content">
         <div className="test-run-tests-results-stats">
           <div className="test-run-tests-results-pie-chart">
-            {/* Pie chart component here (refer to your existing pie chart implementation) */}
             <div className="pie-chart-container">
-              <svg viewBox="0 0 100 100">
-                {pieChartData.map((data, index) => (
-                  <path
-                    key={index}
-                    d={`M50 50 L${
-                      50 +
-                      45 *
-                        Math.cos(
-                          ((index / pieChartData.length) * 360 * Math.PI) /
-                            180
-                        )
-                    } ${
-                      50 +
-                      45 *
-                        Math.sin(
-                          ((index / pieChartData.length) * 360 * Math.PI) /
-                            180
-                        )
-                    } A45 45 0 ${index === pieChartData.length - 1 ? "1" : "0"} 1 ${
-                      50 +
-                      45 *
-                        Math.cos(
-                          (((index + 1) / pieChartData.length) * 360 * Math.PI) /
-                            180
-                        )
-                    } ${
-                      50 +
-                      45 *
-                        Math.sin(
-                          (((index + 1) / pieChartData.length) * 360 * Math.PI) /
-                            180
-                        )
-                    }`}
-                    fill={`hsl(${
-                      (index * 360) / pieChartData.length
-                    }, 90%, 50%)`}
-                  />
-                ))}
-              </svg>
-              <div className="pie-chart-legend">
-                {pieChartData.map((data) => (
-                  <div key={data.name}>
-                    <span
-                      style={{
-                        backgroundColor: `hsl(${
-                          (pieChartData.findIndex(
-                            (item) => item.name === data.name
-                          ) *
-                            360) /
-                          pieChartData.length
-                        }, 70%, 50%)`,
-                      }}
-                    ></span>
-                    {data.name}: {data.percentage}%
-                  </div>
-                ))}
-              </div>
+            <PieChart data={data} />
             </div>
-            {/* End of Pie Chart component */}
           </div>
           <div className="test-run-tests-results-test-cases">
             <div className="test-run-tests-results-section">

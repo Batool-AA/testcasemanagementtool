@@ -1,7 +1,7 @@
 import "../styles/MilestonesDefect.css"
 import React, { useState } from 'react';
-import Graph from "../components/OverviewGraph";
 import { useLocation, useNavigate } from "react-router-dom";
+import ChartDefects from "../components/GraphDefects";
 
 const Milestonesdefects = () => {
 
@@ -16,7 +16,7 @@ const Milestonesdefects = () => {
     const suiteName = searchParams.get('suite') || 'Suite Name';
 
     const milestoneId = searchParams.get('milestoneId') || '0'; 
-  const milestoneName = searchParams.get('milestoneName') || 'Milestone'; 
+  const milestoneName = searchParams.get('milestoneName') || 'Milestone';  
 
   const testPlanId = searchParams.get("testPlanId") || "0"; 
   const testPlanName = searchParams.get("testPlanName") || "Test Plan";
@@ -24,6 +24,13 @@ const Milestonesdefects = () => {
     const handleEditMilestone = () => {
         navigate(`/add-milestone?milestoneId=${milestoneId}&milestoneName=${milestoneName}`, { state: { from: `/milestone-defect?milestoneId=${milestoneId}&milestoneName=${milestoneName}&source=milestone-status` , action: 'edit'} });
       };
+
+      const [chartData, setChartData] = useState({
+        labels: ['Defects', 'Results', 'Tests'],
+        data: [4, 1975, 3518],
+        backgroundColors: ['rgba(255, 99, 132, 0.2)', 'rgba(255, 159, 64, 0.2)', 'rgba(54, 162, 235, 0.2)'],
+        borderColors: ['rgba(255, 99, 132, 1)', 'rgba(255, 159, 64, 1)', 'rgba(54, 162, 235, 1)'],
+      });
 
     return (
         <div className="defects-mainclass">
@@ -108,100 +115,44 @@ const Milestonesdefects = () => {
             </div>
 
             <div className="defects-details">
-                <div className="defects-details-number">
-                    <h1 className="defects-count"><strong>4</strong></h1>
-                    <p className="defects-title">Defects</p>
-                </div>
-                <div className="defects-details-chart">
-                    <div className="defects-chart-download">
+                <div className="defects-chart-download">
                         <button className="download">Download CSV</button>
                         <button className="download">Download Image</button>
-                    </div>
-                    <Graph/>
                 </div>
-                <div className="defects-details-legend">
-                    <div className="defects-legend-item">
-                        <div className="defects-legend-color" style={{ backgroundColor: 'green' }}></div>
-                        <span className="defects-legend-text"><strong>Tests</strong><br></br>3518 tests started</span>
-                    </div>
-                    <div className="defects-legend-item">
-                        <div className="defects-legend-color" style={{ backgroundColor: 'red' }}></div>
-                        <span className="defects-legend-text"><strong>Results</strong><br></br>800 test results added</span>
-                    </div>
-                    <div className="defects-legend-item">
-                        <div className="defects-legend-color" style={{ backgroundColor: 'blue' }}></div>
-                        <span className="defects-legend-text"><strong>Defects</strong><br></br>132 defects logged</span>
-                    </div>
+                <div className="defects-details-chart">
+                    <div className="defects-details-graph"></div>
+                    <ChartDefects chartData={chartData}/>
                 </div>
             </div>
 
             {sourcePage !== 'TestRunTestsResults' && sourcePage !== 'milestone-activity' && sourcePage !== 'milestone-progress' && sourcePage !== 'milestone-defect' && (
                 <>
+                <div className="defects-testrun-container">
                     <div className="defects-testrun-class">
-                <div className="defects-testrun-details">
-                    <p>Test run name</p>
-                    <div className="defects-testrun-number">
-                        <p>number of defects</p>
+                        <div className="defects-testrun-details">
+                            <p>Test run name</p>
+                            <div className="defects-testrun-number">
+                                <p>number of defects</p>
+                            </div>
+                        </div>
+                        <div className="defects-testrun-details">
+                            <p>Test run name</p>
+                            <div className="defects-testrun-number">
+                                <p>number of defects</p>
+                            </div>
+                        </div>
+                        <div className="defects-testrun-details">
+                            <p>Test run name</p>
+                            <div className="defects-testrun-number">
+                                <p>number of defects</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div className="defects-testrun-details">
-                    <p>Test run name</p>
-                    <div className="defects-testrun-number">
-                        <p>number of defects</p>
-                    </div>
-                </div>
-                <div className="defects-testrun-details">
-                    <p>Test run name</p>
-                    <div className="defects-testrun-number">
-                        <p>number of defects</p>
-                    </div>
-                </div>
-                <div className="defects-testrun-details">
-                    <p>Test run name</p>
-                    <div className="defects-testrun-number">
-                        <p>number of defects</p>
-                    </div>
-                </div>
-                <div className="defects-testrun-details">
-                    <p>Test run name</p>
-                    <div className="defects-testrun-number">
-                        <p>number of defects</p>
-                    </div>
-                </div>
-                <div className="defects-testrun-details">
-                    <p>Test run name</p>
-                    <div className="defects-testrun-number">
-                        <p>number of defects</p>
-                    </div>
-                </div>
-                <div className="defects-testrun-details">
-                    <p>Test run name</p>
-                    <div className="defects-testrun-number">
-                        <p>number of defects</p>
-                    </div>
-                </div>
-                <div className="defects-testrun-details">
-                    <p>Test run name</p>
-                    <div className="defects-testrun-number">
-                        <p>number of defects</p>
-                    </div>
-                </div>
-                <div className="defects-testrun-details">
-                    <p>Test run name</p>
-                    <div className="defects-testrun-number">
-                        <p>number of defects</p>
-                    </div>
-                </div>
-                <div className="defects-testrun-details">
-                    <p>Test run name</p>
-                    <div className="defects-testrun-number">
-                        <p>number of defects</p>
-                    </div>
-                </div>
-            </div>
             </>
             )}
 
+            <div className="defects-details-container">
             <div className="defects-details-header">
                 <h3> Defects </h3>
             </div>
@@ -231,60 +182,8 @@ const Milestonesdefects = () => {
                         <p>Added by</p>
                     </div>
                 </div>
-
-                <p className="defects-date"> 18 July 2024</p>
-                <div className="defects-details-individual">
-                    <p className="defects-status-bar-failed">failed</p>
-                    <p className="defects-name">defects name</p>
-                    <div className="defects-doneby">
-                        <p>Added by</p>
-                    </div>
-                </div>
-                <div className="defects-details-individual">
-                    <p className="defects-status-bar-failed">failed</p>
-                    <p className="defects-name">defects name</p>
-                    <div className="defects-doneby">
-                        <p>Added by</p>
-                    </div>
-                </div>
-
-                <p className="defects-date">17 July 2024</p>
-                <div className="defects-details-individual">
-                    <p className="defects-status-bar-failed">failed</p>
-                    <p className="defects-name">defects name</p>
-                    <div className="defects-doneby">
-                        <p>Added by</p>
-                    </div>
-                </div>
-
-                <p className="defects-date"> 16 July 2024</p>
-                <div className="defects-details-individual">
-                    <p className="defects-status-bar-failed">failed</p>
-                    <p className="defects-name">defects name</p>
-                    <div className="defects-doneby">
-                        <p>Added by</p>
-                    </div>
-                </div>
-                <div className="defects-details-individual">
-                    <p className="defects-status-bar-failed">failed</p>
-                    <p className="defects-name">defects name</p>
-                    <div className="defects-doneby">
-                        <p>Added by</p>
-                    </div>
-                </div>
-
-                <p className="defects-date">15 July 2024</p>
-                <div className="defects-details-individual">
-                    <p className="defects-status-bar-failed">failed</p>
-                    <p className="defects-name">defects name</p>
-                    <div className="defects-doneby">
-                        <p>Added by</p>
-                    </div>
-                </div>
-
             </div>
-
-            
+            </div>
         </div>
     );
 }

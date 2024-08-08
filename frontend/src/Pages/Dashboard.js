@@ -63,7 +63,7 @@ const Dashboard = ({userName}) => {
           </div>
           <div className="dashboard-legend-text">1237 recent test changes.</div>
         </div>
-      </div>
+      </div> 
 
       <div className='content'>
         <div className='projects'>

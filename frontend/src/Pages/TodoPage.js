@@ -1,35 +1,15 @@
 import React from 'react';
-import { Bar } from 'react-chartjs-2';
-import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
+import HorizontalBarChart from '../components/horizontalBarChart';
 import { Link } from 'react-router-dom';
 import '../styles/TodoPage.css';
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend
-);
 
-const TodoPage = () => {
-  const chartData = {
-    labels: ['Zainab T.', ''],
-    datasets: [{
-      label: 'Progress',
-      data: [534, 0],
-      backgroundColor: [
-        'rgba(255, 99, 132, 0.2)',
-        'rgba(255, 99, 132, 0.2)',
-      ],
-      borderColor: [
-        'rgba(255, 99, 132, 1)',
-        'rgba(255, 99, 132, 1)',
-      ],
-      borderWidth: 1,
-    }],
-  }; 
+
+const TodoPage = () => { 
+
+  const userData = [
+    { name: 'Zainab T.', active: 150, pending: 424 },
+  ];
 
   return (
     <div className="todo-mainclass">
@@ -43,7 +23,7 @@ const TodoPage = () => {
               <button className="download">Download Image</button>
           </div>
           <div className='todo-chart'>
-            <Bar data={chartData} />
+            <HorizontalBarChart userData={userData}/>
           </div>
       </div>
 
@@ -81,9 +61,6 @@ const TodoPage = () => {
          <div className='todo-testrun-listing'>
               <div className='todo-testrun-item'>
                 <Link to="/TestRunTestsResults">
-                  {/* <div className="test-runs-item-icon">
-                    <i className="fas fa-folder-open"></i>
-                  </div> */}
                   <div className="test-runs-item-title">DSR Functional Testplan for 0.5 (215)</div>
                 </Link>
                 <div className="todo-test-runs-status-bar">
@@ -95,9 +72,6 @@ const TodoPage = () => {
 
               <div className='todo-testrun-item'>
                 <Link to="/TestRunTestsResults">
-                  {/* <div className="test-runs-item-icon">
-                    <i className="fas fa-folder-open"></i>
-                  </div> */}
                   <div className="test-runs-item-title">DSR Functional Testplan for 0.5 (215)</div>
                 </Link>
                 <div className="todo-test-runs-status-bar">
@@ -109,9 +83,6 @@ const TodoPage = () => {
 
               <div className='todo-testrun-item'>
                 <Link to="/TestRunTestsResults">
-                  {/* <div className="test-runs-item-icon">
-                    <i className="fas fa-folder-open"></i>
-                  </div> */}
                   <div className="test-runs-item-title">DSR Functional Testplan for 0.5 (215)</div>
                 </Link>
                 <div className="todo-test-runs-status-bar">
@@ -123,9 +94,6 @@ const TodoPage = () => {
 
               <div className='todo-testrun-item'>
                 <Link to="/TestRunTestsResults">
-                  {/* <div className="test-runs-item-icon">
-                    <i className="fas fa-folder-open"></i>
-                  </div> */}
                   <div className="test-runs-item-title">DSR Functional Testplan for 0.5 (215)</div>
                 </Link>
                 <div className="todo-test-runs-status-bar">
@@ -137,9 +105,6 @@ const TodoPage = () => {
 
               <div className='todo-testrun-item'>
                 <Link to="/TestRunTestsResults">
-                  {/* <div className="test-runs-item-icon">
-                    <i className="fas fa-folder-open"></i>
-                  </div> */}
                   <div className="test-runs-item-title">DSR Functional Testplan for 0.5 (215)</div>
                 </Link>
                 <div className="todo-test-runs-status-bar">
@@ -151,9 +116,6 @@ const TodoPage = () => {
 
               <div className='todo-testrun-item'>
                 <Link to="/TestRunTestsResults">
-                  {/* <div className="test-runs-item-icon">
-                    <i className="fas fa-folder-open"></i>
-                  </div> */}
                   <div className="test-runs-item-title">DSR Functional Testplan for 0.5 (215)</div>
                 </Link>
                 <div className="todo-test-runs-status-bar">

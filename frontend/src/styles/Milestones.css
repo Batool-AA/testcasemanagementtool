@@ -58,7 +58,7 @@ body {
   }
 
   .milestone-delete-button:hover {
-    background-color: #FAA0A0;
+    background-color: #FAA0A0; 
   }
 
   .milestone-listing {
@@ -127,6 +127,8 @@ body {
 
   .details a {
     margin-top: 0.5px;
+    color: #007bff;
+    cursor: pointer;
   }
 
   .status-bar {
