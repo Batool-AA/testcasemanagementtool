@@ -7,7 +7,11 @@ import FileUpload from '../components/fileUpload';
 const AddSection = () => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
-  const [file, setFile] = useState(null);
+  const [files, setFiles] = useState([]);
+
+  const handleFilesChange = (uploadedFiles) => {
+    setFiles(uploadedFiles);
+  };
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -22,7 +26,6 @@ const AddSection = () => {
     console.log('Form submitted with:', {
       name,
       description,
-      file,
     });
 
     // Navigate back to the Sections & Cases page
@@ -36,9 +39,6 @@ const AddSection = () => {
     navigate(`/SectionsCases?suiteId=${suiteId}&suite=${encodeURIComponent(suiteName)}`);
   };
 
-  const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
-  };
 
   return (
     <div className="add-section-container">
@@ -73,7 +73,7 @@ const AddSection = () => {
           />
         </div>
 
-        <FileUpload/>
+        <FileUpload onFilesChange={handleFilesChange}/>
 
         <div className="add-section-buttons">
           <button type="submit" className="add-section-form-button add-section-submit">

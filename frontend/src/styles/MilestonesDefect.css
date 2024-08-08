@@ -8,18 +8,22 @@ body, html {
 
 .defects-mainclass {
     padding: 20px;
-    margin-top: 100px; /* Space for the header */
-    background-color: #e6f3ff;
-    font-family: Arial, sans-serif;
-    box-sizing: border-box;
-    overflow-y: auto; /* Enable vertical scrolling */
-    height: calc(100vh - 60px); /* Full screen height minus header */
-    width: 100%; /* Ensure full width */
+  margin-top: 0px;
+  font-family: Arial, sans-serif;
+  height: calc(100vh - 60px); 
+  width: 100%; 
+  position: absolute;
+  top:80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  left: 0px;
 }
 
 .defects-header {
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
 .defects-options {
@@ -32,8 +36,12 @@ body, html {
 }
 
 .defects-control-button button{
-    width: 100px;
-    height: 40px;
+    width: auto;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
 }
 
 .defects-controls {
@@ -42,73 +50,99 @@ body, html {
 }
 
 .defects-control-button {
-   margin-left: auto;
-   display: flex;
-   gap: 30px;
-   margin-right: 5px;
+    margin-left: auto;
+    display: flex;
+    gap: 30px;
+    margin-right: 5px;
 }
 
 .defects-details {
     display: flex;
-    gap: 30px;
-    width: auto;
-    margin-right: 5px;
-    margin-bottom: 30px;
-    justify-content: center;
-    background-color: white;
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center; 
 }
 
-
-.defects-details-chart, .defects-details-number {
-    background-color: white;
+.defects-details-graph {
+    width: 100%;
     height: auto;
-    width: 50%;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    /* margin-left: 8%; */
+  }
+
+.defects-details-chart {
     align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 65%;
+    top: 0;
+    left: 0;
+    margin-bottom: 0; 
+    display: flex;
+    margin-top: 130px;
+}
+
+.defects-chart-download {
+    display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  margin-bottom: 0; 
+  width: 100%; 
+  margin-top: 100px;
+  left:0px;
+  top: 0px;
+  gap: 10px;
 }
 
 .defects-chart-download button{
     width: auto;
-    margin-left: 30px;
-}
-
-.defects-details-number {
-    width: 10%;
-    flex-direction: column;
+    height: 30px;
+    display: flex;
     justify-content: center;
     align-items: center;
+    padding: 10px;
+    background-color: #007bff;
 }
 
-.defects-details-legend {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin-top: 200px;
-    font-size: 14px;
-    background-color: white;
-  }
-  
-  .defects-legend-item {
-    display: flex;
+.defects-testrun-container{
     align-items: center;
-    margin-bottom: 5px;
-  }
-  
-  .defects-legend-color {
-    width: 15px;
-    height: 15px;
-    margin-right: 10px;
-    border-radius: 50%;
-  }
-  
-  .defects-legend-text {
-    margin-left: 5px;
-    color: black;
-    width: 200px;
-  }
+    justify-content: center;
+    position: absolute;
+    width: 96%;
+    top: 0;
+    left: 0;
+    margin-bottom: 30px; 
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-top: 400px;
+    background-color: #f7faff;
+    border: 1px solid #dde1e4;
+    border-radius: 5px;
+    margin-left: 30px;
+    height: 300px;
+}
+
+.defects-details-container{
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 96%;
+    top: 0;
+    left: 0;
+    margin-bottom: 30px; 
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-top: 750px;
+    background-color: #f7faff;
+    border: 1px solid #dde1e4;
+    border-radius: 5px;
+    margin-left: 30px;
+    height: 300px;
+}
 
   .defects-testrun-class, .defects-details-class {
     overflow-y: auto;
@@ -154,11 +188,19 @@ body, html {
 }
 
 .defects-status-bar-failed {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: red;
-    border-radius: 30px;
+    height: 20px;
     width: auto;
-    height: auto;
     padding: 7px;
+    padding-left: 12px;
+    padding-right: 12px;
+    border-radius: 40px;
+    font-size: 14px;
+    color:#f0f0f0;
+    margin-left: 20px;
 }
 
 .defects-name {

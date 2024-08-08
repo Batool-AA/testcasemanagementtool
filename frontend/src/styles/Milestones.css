@@ -10,7 +10,7 @@ body {
   
   .Milestones-container {
     font-family: Arial, sans-serif;
-    width: 1680px;
+    width: 100%;
     color: black;
   }
   
@@ -58,13 +58,22 @@ body {
   }
 
   .milestone-delete-button:hover {
-    background-color: #FAA0A0;
+    background-color: #FAA0A0; 
   }
 
   .milestone-listing {
-    position: absolute;
+    /* position: absolute;
     top: 150px;
+    width: 100%; */
+    align-items: center;
+    justify-content: center;
+    position: absolute;
     width: 100%;
+    top: 0;
+    left: 0;
+    margin-bottom: 30px; 
+    /* padding: 10px 20px; */
+    margin-top: 150px;
   }
 
   .scrollable-container {
@@ -97,7 +106,7 @@ body {
   .milestoneName {
     background-color:transparent;
     color: black;
-    width: 100px;
+    width: auto;
     font-size: 17px;
   }
 
@@ -118,6 +127,8 @@ body {
 
   .details a {
     margin-top: 0.5px;
+    color: #007bff;
+    cursor: pointer;
   }
 
   .status-bar {

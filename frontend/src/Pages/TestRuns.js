@@ -116,24 +116,28 @@ const TestRuns = () => {
                 <div key={run.id} className="test-run-results-details">
                   <input type="checkbox" />
                   <p className="test-run-indicator">{run.type}</p>
-                  <p>
-                    <strong>
-                      <a
-                        href={`/TestRunTestsResults?testRunId=${run.id}&testRunName=${encodeURIComponent(run.name)}`}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          handleTestRunClick(run.id, run.name);
-                        }}
-                      >
-                        {run.name}
-                      </a>
-                    </strong>
-                    by {run.createdBy} on {run.date}
-                    <br />
-                    {run.progress.passed} Passed, {run.progress.blocked} Blocked, {run.progress.untested} Untested,{" "}
-                    {run.progress.retest} Retest, {run.progress.failed} Failed, {run.progress.comments} Comments and{" "}
-                    {run.progress.partial} Partial
-                  </p>
+                  <div className="test-run-test-case-details-container">
+                    <p>
+                      <strong>
+                        <a
+                          href={`/TestRunTestsResults?testRunId=${run.id}&testRunName=${encodeURIComponent(run.name)}`}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            handleTestRunClick(run.id, run.name);
+                          }}
+                        >
+                          {run.name}
+                        </a>
+                      </strong>
+                    </p>
+                    <p className="testrun-testresults-rundetails">
+                      by {run.createdBy} on {run.date}
+                      <br />
+                      {run.progress.passed} Passed, {run.progress.blocked} Blocked, {run.progress.untested} Untested,{" "}
+                      {run.progress.retest} Retest, {run.progress.failed} Failed, {run.progress.comments} Comments and{" "}
+                      {run.progress.partial} Partial
+                    </p>
+                  </div>
                   {renderTestRunProgressBar(run.progress)}
                   <div className="test-run-results-progress-value">
                     {((run.progress.passed / (run.progress.passed + run.progress.failed)) * 100).toFixed(2)}%
@@ -145,24 +149,28 @@ const TestRuns = () => {
                 <div key={plan.id} className="test-run-results-details">
                   <input type="checkbox" />
                   <p className="test-plan-indicator">{plan.type}</p>
-                  <p>
-                    <strong>
-                      <a
-                        href={`/TestPlanStatus?testPlanId=${plan.id}&testPlanName=${encodeURIComponent(plan.name)}`}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          handleTestPlanClick(plan.id, plan.name);
-                        }}
-                      >
-                        {plan.name}
-                      </a>
-                    </strong>
-                    by {plan.createdBy} on {plan.date}
-                    <br />
-                    {plan.progress.passed} Passed, {plan.progress.blocked} Blocked, {plan.progress.untested} Untested,{" "}
-                    {plan.progress.retest} Retest, {plan.progress.failed} Failed, {plan.progress.comments} Comments and{" "}
-                    {plan.progress.partial} Partial
-                  </p>
+                  <div className="test-run-test-case-details-container">
+                    <p>
+                      <strong>
+                        <a
+                          href={`/TestPlanStatus?testPlanId=${plan.id}&testPlanName=${encodeURIComponent(plan.name)}`}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            handleTestPlanClick(plan.id, plan.name);
+                          }}
+                        >
+                          {plan.name}
+                        </a>
+                      </strong>
+                    </p>
+                    <p className="testrun-testresults-rundetails">
+                      by {plan.createdBy} on {plan.date}
+                      <br />
+                      {plan.progress.passed} Passed, {plan.progress.blocked} Blocked, {plan.progress.untested} Untested,{" "}
+                      {plan.progress.retest} Retest, {plan.progress.failed} Failed, {plan.progress.comments} Comments and{" "}
+                      {plan.progress.partial} Partial
+                    </p>
+                  </div>
                   {renderTestRunProgressBar(plan.progress)}
                   <div className="test-run-results-progress-value">
                     {((plan.progress.passed / (plan.progress.passed + plan.progress.failed)) * 100).toFixed(2)}%
@@ -180,28 +188,32 @@ const TestRuns = () => {
               <div key={run.id} className="test-run-results-details">
                 <input type="checkbox" />
                 <p className="test-run-indicator">{run.type}</p>
-                <p>
-                  <strong>
-                    <a
-                      href={`/TestRunTestsResults?testRunId=${run.id}&testRunName=${encodeURIComponent(run.name)}`}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        handleTestRunClick(run.id, run.name);
-                      }}
-                    >
-                      {run.name}
-                    </a>
-                  </strong>
-                  by {run.createdBy} on {run.date}
-                  <br />
-                  {run.progress.passed} Passed, {run.progress.blocked} Blocked, {run.progress.untested} Untested,{" "}
-                  {run.progress.retest} Retest, {run.progress.failed} Failed, {run.progress.comments} Comments and{" "}
-                  {run.progress.partial} Partial
-                </p>
-                {renderTestRunProgressBar(run.progress)}
-                <div className="test-run-results-progress-value">
-                  {((run.progress.passed / (run.progress.passed + run.progress.failed)) * 100).toFixed(2)}%
-                </div>
+                <div className="test-run-test-case-details-container">
+                    <p>
+                      <strong>
+                        <a
+                          href={`/TestRunTestsResults?testRunId=${run.id}&testRunName=${encodeURIComponent(run.name)}`}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            handleTestRunClick(run.id, run.name);
+                          }}
+                        >
+                          {run.name}
+                        </a>
+                      </strong>
+                    </p>
+                    <p className="testrun-testresults-rundetails">
+                      by {run.createdBy} on {run.date}
+                      <br />
+                      {run.progress.passed} Passed, {run.progress.blocked} Blocked, {run.progress.untested} Untested,{" "}
+                      {run.progress.retest} Retest, {run.progress.failed} Failed, {run.progress.comments} Comments and{" "}
+                      {run.progress.partial} Partial
+                    </p>
+                  </div>
+                  {renderTestRunProgressBar(run.progress)}
+                  <div className="test-run-results-progress-value">
+                    {((run.progress.passed / (run.progress.passed + run.progress.failed)) * 100).toFixed(2)}%
+                  </div>
               </div>
             ))}
 
@@ -209,29 +221,33 @@ const TestRuns = () => {
               <div key={plan.id} className="test-run-results-details">
                 <input type="checkbox" />
                 <p className="test-plan-indicator">{plan.type}</p>
-                <p>
-                  <strong>
-                    <a
-                      href={`/TestPlanStatus?testPlanId=${plan.id}&testPlanName=${encodeURIComponent(plan.name)}`}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        handleTestPlanClick(plan.id, plan.name);
-                      }}
-                    >
-                      {plan.name}
-                    </a>
-                  </strong>
-                  by {plan.createdBy} on {plan.date}
-                  <br />
-                  {plan.progress.passed} Passed, {plan.progress.blocked} Blocked, {plan.progress.untested} Untested,{" "}
-                  {plan.progress.retest} Retest, {plan.progress.failed} Failed, {plan.progress.comments} Comments and{" "}
-                  {plan.progress.partial} Partial
-                </p>
-                {renderTestRunProgressBar(plan.progress)}
-                <div className="test-run-results-progress-value">
-                  {((plan.progress.passed / (plan.progress.passed + plan.progress.failed)) * 100).toFixed(2)}%
+                <div className="test-run-test-case-details-container">
+                    <p>
+                      <strong>
+                        <a
+                          href={`/TestPlanStatus?testPlanId=${plan.id}&testPlanName=${encodeURIComponent(plan.name)}`}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            handleTestPlanClick(plan.id, plan.name);
+                          }}
+                        >
+                          {plan.name}
+                        </a>
+                      </strong>
+                    </p>
+                    <p className="testrun-testresults-rundetails">
+                      by {plan.createdBy} on {plan.date}
+                      <br />
+                      {plan.progress.passed} Passed, {plan.progress.blocked} Blocked, {plan.progress.untested} Untested,{" "}
+                      {plan.progress.retest} Retest, {plan.progress.failed} Failed, {plan.progress.comments} Comments and{" "}
+                      {plan.progress.partial} Partial
+                    </p>
+                  </div>
+                  {renderTestRunProgressBar(plan.progress)}
+                  <div className="test-run-results-progress-value">
+                    {((plan.progress.passed / (plan.progress.passed + plan.progress.failed)) * 100).toFixed(2)}%
+                  </div>
                 </div>
-              </div>
             ))}
           </div>
         </div>

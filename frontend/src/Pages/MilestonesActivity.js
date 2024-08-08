@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import Graph from '../components/OverviewGraph';
 import '../styles/MilestonesActivity.css';
+import LineChart from '../components/LineGraph';
 
 const MilestonesActivity = () => {
     const navigate = useNavigate();
@@ -24,6 +24,16 @@ const MilestonesActivity = () => {
         navigate(`/add-milestone?milestoneId=${milestoneId}&milestoneName=${milestoneName}`, { state: { from: `/milestone-activity?milestoneId=${milestoneId}&milestoneName=${milestoneName}&source=milestone-status`, action: 'edit' } });
     };
 
+    const data = {
+        labels: ['2/24', '2/25', '2/26', '2/27', '2/28', '3/1'],
+        passed: [200, 0, 0, 0, 300, 500],
+        blocked: [0, 0, 0, 0, 3, 4],
+        retest: [0, 0, 0, 0, 1, 1],
+        failed: [0, 0, 0, 0, 2, 20],
+        comments: [0, 0, 0, 0, 1, 2],
+        partial: [0, 0, 0, 0, 4, 30],
+      };
+ 
     return (
         <div className="activity-mainclass">
             <div className="activity-header">
@@ -107,65 +117,44 @@ const MilestonesActivity = () => {
                 </div>
             </div>
 
-            <div className="activity-details">
-                <div className="activity-details-chart">
+            <div className="activity-details-chart-container">
                     <div className="activity-chart-download">
                         <button className="download">Download CSV</button>
                         <button className="download">Download Image</button>
                     </div>
-                    <Graph />
-                </div>
-                <div className="activity-details-legend">
-                    <div className="activity-legend-item">
-                        <div className="activity-legend-color" style={{ backgroundColor: 'green' }}></div>
-                        <span className="activity-legend-text">1146 Passed</span>
-                    </div>
-                    <div className="activity-legend-item">
-                        <div className="activity-legend-color" style={{ backgroundColor: 'red' }}></div>
-                        <span className="activity-legend-text">7 Blocked</span>
-                    </div>
-                    <div className="activity-legend-item">
-                        <div className="activity-legend-color" style={{ backgroundColor: 'blue' }}></div>
-                        <span className="activity-legend-text">2 Retest</span>
-                    </div>
-                    <div className="activity-legend-item">
-                        <div className="activity-legend-color" style={{ backgroundColor: 'orange' }}></div>
-                        <span className="activity-legend-text">22 Failed</span>
-                    </div>
-                    <div className="activity-legend-item">
-                        <div className="activity-legend-color" style={{ backgroundColor: 'grey' }}></div>
-                        <span className="activity-legend-text">3 Comments</span>
-                    </div>
-                    <div className="activity-legend-item">
-                        <div className="activity-legend-color" style={{ backgroundColor: 'yellow' }}></div>
-                        <span className="activity-legend-text">34 Partial</span>
+                <div className="activity-details-chart">
+                    <div className='activity-details-graph'>
+                        <LineChart data={data}/>
                     </div>
                 </div>
             </div>
 
-            <div className="activity-listing-header">
-                <h2>Activity</h2>
-            </div>
-
+            
             <div className="activity-milestones-details-class">
-                <div className="activity-milestones-date">21 July 2024</div>
-                <div className="activity-milestones-details">
-                    <p className="activity-pass-status">Passed</p>
-                    <p className="activity-details-listing">Activity Details</p>
-                    <div className="activity-milestone-doneby">Tested By</div>
+                <div className="activity-listing-header">
+                    <h2>Activity</h2>
                 </div>
-                <div className="activity-milestones-details">
-                    <p className="activity-fail-status">Failed</p>
-                    <p className="activity-details-listing">Activity Details</p>
-                    <div className="activity-milestone-doneby">Tested By</div>
-                </div>
+                <div className='activity-milestones-details-scrollable'>
+                    <div className="activity-milestones-date">21 July 2024</div>
+                    <div className="activity-milestones-details">
+                        <p className="activity-pass-status">Passed</p>
+                        <p className="activity-details-listing">Activity Details</p>
+                        <div className="activity-milestone-doneby">Tested By</div>
+                    </div>
+                    <div className="activity-milestones-details">
+                        <p className="activity-fail-status">Failed</p>
+                        <p className="activity-details-listing">Activity Details</p>
+                        <div className="activity-milestone-doneby">Tested By</div>
+                    </div>
 
-                <div className="activity-milestones-date">20 July 2024</div>
-                <div className="activity-milestones-details">
-                    <p className="activity-fail-status">Failed</p>
-                    <p className="activity-details-listing">Activity Details</p>
-                    <div className="activity-milestone-doneby">Tested By</div>
+                    <div className="activity-milestones-date">20 July 2024</div>
+                    <div className="activity-milestones-details">
+                        <p className="activity-fail-status">Failed</p>
+                        <p className="activity-details-listing">Activity Details</p>
+                        <div className="activity-milestone-doneby">Tested By</div>
+                    </div>
                 </div>
+                
             </div>
         </div>
     );

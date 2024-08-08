@@ -47,9 +47,12 @@ const Dashboard = ({userName}) => {
         </div>
         
         
-      </header>
+      </header> 
           
+      <div className='dashboard-graph-controls'>
       <Graphcontrol/>
+      </div>
+      
 
       <div className="chart-container">
         <img src={linechart} alt="Chart" className="chart" />
@@ -60,7 +63,7 @@ const Dashboard = ({userName}) => {
           </div>
           <div className="dashboard-legend-text">1237 recent test changes.</div>
         </div>
-      </div>
+      </div> 
 
       <div className='content'>
         <div className='projects'>

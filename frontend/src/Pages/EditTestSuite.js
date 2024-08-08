@@ -18,15 +18,18 @@ const EditTestSuite = () => {
   // Initialize the name state with suiteName from URL or default name
   const [name, setName] = useState(suiteName); // Correct state initialization
   const [description, setDescription] = useState(''); // Preset with existing description if any
-  const [file, setFile] = useState(null);
+  const [files, setFiles] = useState([]);
+
+  const handleFilesChange = (uploadedFiles) => {
+    setFiles(uploadedFiles);
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     // Handle form submission here
     console.log('Edited Suite with:', {
       name,
-      description,
-      file
+      description
     });
 
     // Navigate based on the source page and include suite ID in URL
@@ -62,10 +65,6 @@ const EditTestSuite = () => {
     } else {
       navigate('/TestSuitsCases');
     }
-  };
-
-  const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
   };
 
   return (
@@ -106,7 +105,7 @@ const EditTestSuite = () => {
             />
           </div>
 
-          <FileUpload/>
+          <FileUpload onFilesChange={handleFilesChange}/>
 
           <div className="edit-suite-buttons">
             <button

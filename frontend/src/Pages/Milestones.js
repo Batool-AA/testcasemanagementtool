@@ -14,7 +14,7 @@ const Milestones = () => {
     { id: 3, name: 'Release 1.120', checked: false },
     { id: 4, name: 'Genstack', checked: false },
   ]);
-
+ 
   const handleFormat = () => {
     setShowButtons(!showButtons);
   };
@@ -51,7 +51,7 @@ const Milestones = () => {
   const handleMilestoneClick = (milestoneId, milestoneName) => {
     navigate(`/milestone-status?milestoneId=${milestoneId}&milestoneName=${encodeURIComponent(milestoneName)}`);
   };
-
+ 
   return (
     <div className="Milestones-container">
       <div className='milestone-main-heading'>
@@ -59,8 +59,8 @@ const Milestones = () => {
         <div className='button-class'>
           <button className="milestone-add-button" onClick={handleAdd}> + Add Milestone</button>
           <button className="milestone-delete-button" onClick={handleDelete}> - Delete Milestone</button>
-        </div>
-      </div>
+        </div> 
+      </div> 
 
       <div className='milestone-listing'>
         <div className='milestones-open'>
@@ -70,7 +70,6 @@ const Milestones = () => {
               <div className='details' key={milestone.id}>
                 <input type="checkbox" checked={milestone.checked} onChange={() => handleCheckboxChange(milestone.id, 'open')} />
                 <a
-                  // href="#"
                   className='milestoneName'
                   onClick={() => handleMilestoneClick(milestone.id, milestone.name)}
                 >
@@ -96,7 +95,6 @@ const Milestones = () => {
                 <div className='details' key={milestone.id}>
                   <input type="checkbox" checked={milestone.checked} onChange={() => handleCheckboxChange(milestone.id, 'completed')} />
                   <a
-                    // href="#"
                     className='milestoneName'
                     onClick={() => handleMilestoneClick(milestone.id, milestone.name)}
                   >
@@ -113,7 +111,6 @@ const Milestones = () => {
                 <div className='details' key={milestone.id}>
                   <input type="checkbox" checked={milestone.checked} onChange={() => handleCheckboxChange(milestone.id, 'completed')} />
                   <a
-                    href="#"
                     className='milestoneName'
                     onClick={() => handleMilestoneClick(milestone.id, milestone.name)}
                   >

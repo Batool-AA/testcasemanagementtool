@@ -71,16 +71,25 @@
 }
 
 .test-run-tests-results-pie-chart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   flex: 1;
   background-color: #fff;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   border: 1px solid #dde1e4;
-  padding: 10px;
-  padding-right: 500px;
+  padding: 20px;
+  padding-left: 200px;
+  padding-right: 200px;
+  
 
   width: 300px;
   margin: auto;
+}
+
+.pie-chart-container {
+  /* margin-left: 100%; */
 }
 
 .test-run-tests-results-test-cases {

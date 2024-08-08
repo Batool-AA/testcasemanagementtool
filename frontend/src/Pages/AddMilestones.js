@@ -11,20 +11,20 @@ const AddMilestone = () => {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [isCompleted, setIsCompleted] = useState(false);
-  const [selectedFile, setSelectedFile] = useState(null);
-  const [newText, setNewText] = useState('');
-  const [images, setImages] = useState([]);
+  const [files, setFiles] = useState([]);
 
+  const handleFilesChange = (uploadedFiles) => {
+    setFiles(uploadedFiles);
+  };
+ 
   const navigate = useNavigate();
 
   const location = useLocation();
   const from = location.state?.from;
-  const action = location.state?.action;
+  const action = location.state?.action; 
 
   const handleCancel = () => {
-
     navigate(from);
-
   };
 
   const handleSubmit = (event) => {
@@ -38,20 +38,12 @@ const AddMilestone = () => {
       startDate,
       endDate,
       isCompleted,
+      files
     });
-
     navigate(from);
-
   };
 
-  const handleFileChange = (event) => {
-    const files = Array.from(event.target.files);
-    setImages((prevImages) => [...prevImages, ...files]);
-  };
-
-  const removeImage = (index) => {
-    setImages(images.filter((_, i) => i !== index));
-  };
+  
   
   return (
     <div className="milestone-form">
@@ -150,7 +142,7 @@ const AddMilestone = () => {
             <label htmlFor="isCompleted">This milestone is completed</label>
         </div>
 
-        <FileUpload/>
+        <FileUpload onFilesChange={handleFilesChange}/>
       
         <div className="form-buttons">
           <button type="submit" className='add-edit-button'> ✓ {action == "edit" ? 'Update' : 'Add'} Milestone</button>

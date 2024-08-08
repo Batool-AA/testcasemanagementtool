@@ -13,6 +13,12 @@ const AddTestPlan = () => {
   const [popupVisible, setPopupVisible] = useState(false);
   const [selectedPopupOptions, setSelectedPopupOptions] = useState([]);
 
+  const [files, setFiles] = useState([]);
+
+  const handleFilesChange = (uploadedFiles) => {
+    setFiles(uploadedFiles);
+  };
+
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from;
@@ -165,7 +171,7 @@ const AddTestPlan = () => {
             
         </div>
         
-        <FileUpload/>
+        <FileUpload onFilesChange={handleFilesChange}/>
         
 
         <div className="test-plan-buttons">

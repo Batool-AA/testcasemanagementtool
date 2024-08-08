@@ -11,7 +11,13 @@ const AddTestRun = () => {
   const [assignTo, setAssignTo] = useState('');
   const [description, setDescription] = useState('');
   const [testCaseSelection, setTestCaseSelection] = useState('all');
-  const [images, setImages] = useState([]);
+
+  const [files, setFiles] = useState([]);
+
+  const handleFilesChange = (uploadedFiles) => {
+    setFiles(uploadedFiles);
+  };
+
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -62,14 +68,7 @@ const AddTestRun = () => {
       }
   };
 
-  const handleFileChange = (event) => {
-    const files = Array.from(event.target.files);
-    setImages((prevImages) => [...prevImages, ...files]);
-  };
-
-  const removeImage = (index) => {
-    setImages(images.filter((_, i) => i !== index));
-  };
+  
 
   const [isPopupVisible, setIsPopupVisible] = useState(false);
 
@@ -230,8 +229,7 @@ const AddTestRun = () => {
           )}
         </div>
 
-          <FileUpload/>
-
+        <FileUpload onFilesChange={handleFilesChange}/>
         <div className="test-run-buttons">
           <button type="submit" className="test-run-button test-run-submit">
             ✓ Add Test Run

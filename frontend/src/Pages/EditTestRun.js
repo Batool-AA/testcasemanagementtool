@@ -1,22 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/AddTestRun.css';
 import { useNavigate, useLocation } from 'react-router-dom';
-import FilterPopup from './ChangeSelectionTestRun.js'
+import FilterPopup from './ChangeSelectionTestRun.js';
 import FileUpload from '../components/fileUpload.js';
 
 const EditTestRun = () => {
-
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from;
+//   const from = location.state?.from;
   const { selectedOption } = location.state || {};
 
   const searchParams = new URLSearchParams(location.search);
-  const suiteId = searchParams.get('suiteId') || '0'; // Default to '0' if no suiteId is provided
-  const sourcePage = searchParams.get('source'); // Will be either 'TestSuitesCases' or 'TestRuns'
   const testRunId = searchParams.get("testRunId") || "0"; // Default to '0' if no testRunId is provided
   const testRunName = searchParams.get("testRunName") || "Test Run";
-  const suiteName = searchParams.get('suite') || 'Test Suite'; // Default to 'Test Suite' if no suiteName is provided
 
   const [name, setName] = useState(testRunName);
   const [references, setReferences] = useState('');
@@ -26,15 +22,13 @@ const EditTestRun = () => {
   const [testCaseSelection, setTestCaseSelection] = useState('all');
   const [images, setImages] = useState([]);
 
-  
   useEffect(() => {
     if (selectedOption) {
       setName(selectedOption);
     }
   }, [selectedOption]);
 
-  const handleCancel = () => { 
-    // navigate(from);
+  const handleCancel = () => {
     navigate(`/TestRunTestsResults?testRunId=${testRunId}&testRunName=${testRunName}`);
   };
 
@@ -49,8 +43,9 @@ const EditTestRun = () => {
       assignTo,
       description,
       testCaseSelection,
+      images, // Include images in the submission
     });
-    // navigate(from);
+
     navigate(`/TestRunTestsResults?testRunId=${testRunId}&testRunName=${testRunName}`);
   };
 
@@ -58,11 +53,9 @@ const EditTestRun = () => {
     e.preventDefault();
 
     navigate(`/TestRunTestsResults?testRunId=${testRunId}&testRunName=${testRunName}`);
-
   };
 
-  const handleFileChange = (event) => {
-    const files = Array.from(event.target.files);
+  const handleFileChange = (files) => {
     setImages((prevImages) => [...prevImages, ...files]);
   };
 
@@ -82,8 +75,6 @@ const EditTestRun = () => {
 
   const [isPopupVisibleFilter, setIsPopupVisibleFilter] = useState(false);
 
-
-  
   return (
     <div className="test-run-container">
       <form className="test-run-form" onSubmit={handleSubmit}>
@@ -229,42 +220,41 @@ const EditTestRun = () => {
           )}
         </div>
 
-          <FileUpload/>
+        {/* Pass the handleFileChange function as a prop to the FileUpload component */}
+        <FileUpload onFilesChange={handleFileChange} />
 
-          <div className="edit-suite-buttons">
-            <button
-              type="submit"
-              className="edit-suite-button edit-suite-save"
-            >
-              ✓ Save Test Run
-            </button>
-            <button
-              type="button"
-              className="edit-suite-button edit-suite-cancel"
-              onClick={handleCancel}
-            >
-              ✗ Cancel
-            </button>
-          </div>
+        <div className="edit-suite-buttons">
+          <button
+            type="submit"
+            className="edit-suite-button edit-suite-save"
+          >
+            ✓ Save Test Run
+          </button>
+          <button
+            type="button"
+            className="edit-suite-button edit-suite-cancel"
+            onClick={handleCancel}
+          >
+            ✗ Cancel
+          </button>
+        </div>
 
-        {isPopupVisible && 
-          <FilterPopup onCancel={() => setIsPopupVisible(false)}/>}
-        
+        {isPopupVisible &&
+          <FilterPopup onCancel={() => setIsPopupVisible(false)} />}
       </form>
 
       <div className="actions-section">
-          {/* <p className="actions-title">Actions</p> */}
-          <p className="actions-description">
+        <p className="actions-description">
           <br></br>Delete this test run to remove it from your project.
-          </p>
-          <button
-              type="button"
-              onClick={handleDelete}
-              className="delete-suite-button"
-            >
-              ✗ Delete this test run
-            </button>
-        </div>
+        </p>
+        <button
+          type="button"
+          onClick={handleDelete}
+          className="delete-suite-button"
+        >
+          ✗ Delete this test run
+        </button>
+      </div>
     </div>
   );
 };

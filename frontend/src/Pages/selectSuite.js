@@ -8,10 +8,9 @@ const Popup = ({ onConfirm, onCancel, actionType }) => {
   const handleConfirm = () => {
     if (selectedOption) {
       onConfirm(selectedOption, actionType);
-      // Optional: close the popup here if you want to automatically close it on confirm
     }
   };
-
+ 
   return (
     <div className="popup-overlay">
       <div className="popup"> 
@@ -22,8 +21,8 @@ const Popup = ({ onConfirm, onCancel, actionType }) => {
           <option value="option2">Option 2</option>
         </select>
         <div className="popup-buttons">
-          <button onClick={handleConfirm}>Confirm</button>
-          <button onClick={onCancel}>Cancel</button>
+          <button onClick={handleConfirm} className='select-suite-confirm'>Confirm</button>
+          <button onClick={onCancel} className='select-suite-cancel'>Cancel</button>
         </div>
       </div>
     </div>

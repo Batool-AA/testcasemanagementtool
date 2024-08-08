@@ -43,6 +43,12 @@ const EditTestCase = () => {
   const [stepsCases, setStepsCases] = useState([{ id: 1 }]);
   const [bddscenerio, setbddscenerio] = useState([{ id: 1 }]);
 
+  const [files, setFiles] = useState([]);
+
+  const handleFilesChange = (uploadedFiles) => {
+    setFiles(uploadedFiles);
+  };
+
   const addStepCases = (e) => {
     e.preventDefault();
     setStepsCases((prevSteps) => [
@@ -431,7 +437,7 @@ const EditTestCase = () => {
             />
           </div>
 
-          <FileUpload/>
+          <FileUpload onFilesChange={handleFilesChange}/>
 
           {/* Buttons */}
           <div className="edit-suite-buttons">

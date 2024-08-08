@@ -24,6 +24,12 @@ const AddTestCase = () => {
   const [stepsCases, setStepsCases] = useState([{ id: 1 }]);
   const [bddscenerio, setbddscenerio] = useState([{ id: 1 }]);
 
+  const [files, setFiles] = useState([]);
+
+  const handleFilesChange = (uploadedFiles) => {
+    setFiles(uploadedFiles);
+  };
+
   const addStepCases = (e) => {
     e.preventDefault();
     setStepsCases((prevSteps) => [
@@ -383,7 +389,7 @@ const AddTestCase = () => {
           </div>
           
 
-          <FileUpload/>
+          <FileUpload onFilesChange={handleFilesChange}/>
 
           {/* Buttons */}
           <div className="test-case-buttons">

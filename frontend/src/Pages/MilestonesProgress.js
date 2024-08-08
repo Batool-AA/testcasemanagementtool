@@ -1,7 +1,8 @@
 import "../styles/MilestonesProgress.css";
 import React from "react";
-import Graph from "../components/OverviewGraph";
+// import Graph from "../components/OverviewGraph"; // Ensure this component exists
 import { useLocation, useNavigate } from "react-router-dom";
+import LineChartProgress from "../components/LineGraphProgress"; // Ensure this component exists
 
 const MilestonesProgress = () => {
   const navigate = useNavigate();
@@ -30,6 +31,14 @@ const MilestonesProgress = () => {
     { id: "204", name: "Security Test", date: "2024-08-04", author: "David" },
     { id: "205", name: "Acceptance Test", date: "2024-08-05", author: "Eva" },
   ];
+
+  // Data for LineChartProgress
+  const data = {
+    labels: ['5/12', '5/16', '5/20', '5/24'],
+    remaining_tests: [3518, 28, 1676, 2497],
+    remaining_efforts: [0, 0, 0, 0, 3, 4],
+    ideal_progress: [0, 0, 0, 0, 1, 1],
+  };
 
   // Navigate to Edit Milestone
   const handleEditMilestone = () => {
@@ -153,125 +162,78 @@ const MilestonesProgress = () => {
       </div>
 
       <div className="progress-details">
-        <div className="progress-details-chart">
-          <div className="progress-chart-download">
-            <button className="download">Download CSV</button>
-            <button className="download">Download Image</button>
-          </div>
-          <Graph />
-        </div>
-        <div className="progress-details-legend">
-          <div className="progress-legend-item">
-            <div
-              className="progress-legend-color"
-              style={{ backgroundColor: "green" }}
-            ></div>
-            <span className="progress-legend-text">
-              <strong>Remaining Tests</strong>
-              <br />
-              52% of tests completed
-            </span>
-          </div>
-          <div className="progress-legend-item">
-            <div
-              className="progress-legend-color"
-              style={{ backgroundColor: "red" }}
-            ></div>
-            <span className="progress-legend-text">
-              <strong>Remaining Effort</strong>
-              <br />
-              Forecast not available
-            </span>
-          </div>
-          <div className="progress-legend-item">
-            <div
-              className="progress-legend-color"
-              style={{ backgroundColor: "blue" }}
-            ></div>
-            <span className="progress-legend-text">
-              <strong>Ideal Progress</strong>
-              <br />
-              Forecast not available
-            </span>
-          </div>
-        </div>
-      </div>
+                <div className="progress-chart-download">
+                        <button className="download">Download CSV</button>
+                        <button className="download">Download Image</button>
+                    </div>
+                <div className="progress-details-chart">
+                   <div className="progress-details-graph">
+                        <LineChartProgress data={data}/>
+                   </div>
+                </div>
+            </div>
 
-      <div className="progress-details-header">
-        <h3> Progress </h3>
-      </div>
+            
 
-      <div className="progress-details-class">
-        <div className="progress-details-section">
-          <div className="progress-expected-date-info">
-            <p>
-              Based on the current activity and forecasts, the projected
-              completion date for this milestone is:
-            </p>
-          </div>
-          <div className="progress-expected-date">
-            <p className="progress-date">
-              <strong>Unknown</strong>
-            </p>
-            <p className="progress-date-details">
-              Forecast not possible, more data needed
-            </p>
-          </div>
-        </div>
+            <div className="progress-details-class">
+                <div className="progress-details-header">
+                    <h3> Progress </h3>
+                </div>
+                <div className="progress-details-section">
+                    <div className="progress-expected-date-info">
+                        <p>Based on the current activity and forecasts, the projected completion date for this milestone is:</p>
+                    </div>
+                    <div className="progress-expected-date">
+                        <p className="progress-date"><strong>Unknown</strong></p>
+                        <p className="progress-date-details">Forecast not possible, more data needed</p>
+                    </div>
+                </div>
 
-        <hr />
+                <hr />
+                
+                <div className="progress-details-section">
+                    <div className="progress-expected-date-info">
+                        <p>This milestone was started <strong>9 weeks ago</strong> (5/29/2024)</p>
+                    </div>
+                    <div className="progress-expected-date">
+                        <p> Completed: 5% (205/3491) <br /> Elapsed: 0h 0m <br /> Tests / day: 3 <br /> Hours / day: n/a </p>
+                    </div>
+                </div>
+                
+                <hr />
 
-        <div className="progress-details-section">
-          <div className="progress-expected-date-info">
-            <p>
-              This milestone was started <strong>9 weeks ago</strong> (5/29/2024)
-            </p>
-          </div>
-          <div className="progress-expected-date">
-            <p>
-              Completed: 5% (205/3491) <br /> Elapsed: 0h 0m <br /> Tests / day:
-              3 <br /> Hours / day: n/a{" "}
-            </p>
-          </div>
-        </div>
-
-        <hr />
-
-        <div className="progress-details-section">
-          <table className="progress-table">
-            <tbody>
-              <tr>
-                <th>Metric</th>
-                <th>By Estimate</th>
-                <th>By Forecast</th>
-              </tr>
-              <tr>
-                <td>Completed</td>
-                <td>0h 0m</td>
-                <td>n/a</td>
-              </tr>
-              <tr>
-                <td>To-do</td>
-                <td>0h 0m</td>
-                <td>n/a</td>
-              </tr>
-              <tr>
-                <td>Total</td>
-                <td>0h 0m</td>
-                <td>n/a</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      {/* Test Runs Section */}
-      {sourcePage !== "TestRunTestsResults" &&
-        sourcePage !== "milestone-activity" &&
-        sourcePage !== "milestone-progress" &&
-        sourcePage !== "milestone-defect" && (
-          <>
-            <h3> Test Runs </h3>
+                <div className="progress-details-section">
+                    <table className="progress-table">
+                        <tbody>
+                            <tr>
+                                <th>Metric</th>
+                                <th>By Estimate</th>
+                                <th>By Forecast</th>
+                            </tr>
+                            <tr>
+                                <td>Completed</td>
+                                <td>0h 0m</td>
+                                <td>n/a</td>
+                            </tr>
+                            <tr>
+                                <td>To-do</td>
+                                <td>0h 0m</td>
+                                <td>n/a</td>
+                            </tr>
+                            <tr>
+                                <td>Total</td>
+                                <td>0h 0m</td>
+                                <td>n/a</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+      {sourcePage !== 'TestRunTestsResults' && sourcePage !== 'milestone-activity' && sourcePage !== 'milestone-progress' && sourcePage !== 'milestone-defect' && (
+                <> 
+                <div className="progress-testruns-container">
+               <h3> Test Runs </h3>
             <div className="progress-testrun-class">
               {testRuns.map((testRun) => (
                 <div
@@ -298,8 +260,9 @@ const MilestonesProgress = () => {
                 </div>
               ))}
             </div>
-          </>
-        )}
+            </div>
+                </>
+            )}
     </div>
   );
 };
